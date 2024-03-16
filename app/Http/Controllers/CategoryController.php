@@ -11,7 +11,11 @@ class CategoryController extends Controller
     // direct view category list page
     public function list()
     {
-        $categories = Category::orderBy('category_id', 'desc')->get();
+        $categories = Category::when(request('searchkey'), function ($queryforsearch) {
+            $queryforsearch->where('name', 'like', '%' . request('searchkey') . '%');
+        })
+            ->orderBy('category_id', 'desc')
+            ->paginate(5);
         return view('admin.category.list', compact('categories'));
     }
 
@@ -29,6 +33,13 @@ class CategoryController extends Controller
         $data = $this->requestCategoryData($request);
         Category::create($data);
         return redirect()->route('category#list');
+    }
+
+    // delete category
+    public function delete($id)
+    {
+        Category::where('category_id', $id)->delete();
+        return back()->with(['deleteCategory' => 'You have deleted a category!']);
     }
 
     // category validation check

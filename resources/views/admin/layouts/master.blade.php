@@ -22,6 +22,9 @@
     <!-- Bootstrap CSS-->
     <link href="{{ asset('admin/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
 
+    {{-- Bootstrap 5.3.3 CSS CDN Link  --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Vendor CSS-->
     <link href="{{ asset('admin/vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet"
@@ -176,6 +179,8 @@
 
     <!-- Jquery JS-->
     <script src="{{ asset('admin/vendor/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap 5.3.3 CDN JS Link-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="{{ asset('admin/vendor/bootstrap-4.1/popper.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
