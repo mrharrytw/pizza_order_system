@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id('product_id');
+            $table->id();
             $table->integer('categoty_id');
             $table->string('name');
             $table->longText('description');

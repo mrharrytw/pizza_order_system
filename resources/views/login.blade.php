@@ -27,10 +27,12 @@
                 @enderror
             </div>
 
-            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Sign
-                in</button>
+            <button class="au-btn au-btn--block au-btn--dark m-b-20" type="submit">
+                Sign in
+            </button>
 
         </form>
+
         <div class="register-link">
             <p>
                 Don't you have account?

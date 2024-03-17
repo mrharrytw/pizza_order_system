@@ -19,6 +19,9 @@
     <link href="{{ asset('admin/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet"
         media="all">
 
+    <!-- Fontawesome cdn link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
     <!-- Bootstrap CSS-->
     <link href="{{ asset('admin/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
 
@@ -123,7 +126,8 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}" alt="John Doe" />
+                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
+                                                alt="John Doe" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{ Auth::user()->name }}</a>

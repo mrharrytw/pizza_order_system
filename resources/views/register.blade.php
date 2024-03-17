@@ -85,7 +85,7 @@
                 @enderror
             </div>
 
-            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">register</button>
+            <button class="au-btn au-btn--block au-btn--dark m-b-20" type="submit">register</button>
 
         </form>
         <div class="register-link">

@@ -14,7 +14,7 @@ class CategoryController extends Controller
         $categories = Category::when(request('searchkey'), function ($queryforsearch) {
             $queryforsearch->where('name', 'like', '%' . request('searchkey') . '%');
         })
-            ->orderBy('category_id', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate(5);
         return view('admin.category.list', compact('categories'));
     }
@@ -34,11 +34,26 @@ class CategoryController extends Controller
         Category::create($data);
         return redirect()->route('category#list');
     }
+    //edit category
+    public function edit($id)
+    {
+        $category = Category::where('id', $id)->first();
+        return view('admin.category.edit', compact('category'));
+    }
+
+    // update category
+    public function update(Request $request)
+    {
+        $this->categoryValidationCheck($request);
+        $data = $this->requestCategoryData($request);
+        Category::where('id', $request->categoryId)->update($data);
+        return redirect()->route('category#list')->with(['updateCategory' => 'You have edited a category!']);
+    }
 
     // delete category
     public function delete($id)
     {
-        Category::where('category_id', $id)->delete();
+        Category::where('id', $id)->delete();
         return back()->with(['deleteCategory' => 'You have deleted a category!']);
     }
 
@@ -48,7 +63,7 @@ class CategoryController extends Controller
         Validator::make(
             $request->all(),
             [
-                'categoryName' => 'required|unique:categories,name'
+                'categoryName' => 'required|unique:categories,name,' . $request->categoryId
             ],
             [
                 // Custom Validation Message
