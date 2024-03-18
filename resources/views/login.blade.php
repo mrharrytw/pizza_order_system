@@ -40,4 +40,15 @@
             </p>
         </div>
     </div>
+    {{-- alert message start --}}
+    <div class="mt-2 col-12">
+        @if (session('pwChange'))
+            <div class="alert alert-success text-small text-center alert-dismissible fade show" role="alert">
+                <i class="fa-regular fa-circle-check"></i>
+                <small>{{ session('pwChange') }}</small>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    </div>
+    {{-- alert message end --}}
 @endsection

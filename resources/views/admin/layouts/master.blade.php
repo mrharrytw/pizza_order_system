@@ -127,22 +127,24 @@
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
                                             <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                alt="John Doe" />
+                                                alt="Profile Image" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">{{ Auth::user()->name }}</a>
+                                            <a class="js-acc-btn text-decoration-none"
+                                                href="#">{{ Auth::user()->name }}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
                                                         <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                            alt="John Doe" />
+                                                            alt="Profile Image" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">{{ Auth::user()->name }}</a>
+                                                        <a href="#"
+                                                            class="text-decoration-none">{{ Auth::user()->name }}</a>
                                                     </h5>
                                                     <span class="email">{{ Auth::user()->email }}</span>
                                                     <span class=" text-uppercase">{{ Auth::user()->role }}</span>
@@ -150,16 +152,21 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                    <a href="#" class=" text-decoration-none">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="{{ route('admin#changePasswordPage') }}"
+                                                        class=" text-decoration-none">
+                                                        <i class="zmdi zmdi-key"></i>Change Password</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <form action="{{ route('logout') }}" method="post">
                                                     @csrf
                                                     <button type="submit"
-                                                        class="btn btn-sm btn-primary rounded-0 px-5 col-12">
-                                                        <i class="zmdi zmdi-power"></i> Logout
+                                                        class="btn btn-sm btn-dark rounded-0 px-5 col-12">
+                                                        <i class="zmdi zmdi-power me-2"></i> Logout
                                                     </button>
                                                 </form>
                                             </div>

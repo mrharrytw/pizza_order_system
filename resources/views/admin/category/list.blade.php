@@ -31,7 +31,7 @@
                             @if (session('deleteCategory'))
                                 <div class="alert alert-danger text-small text-center alert-dismissible fade show"
                                     role="alert">
-                                    <p>{{ session('deleteCategory') }}</p>
+                                    <small>{{ session('deleteCategory') }}</small>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
                                 </div>
@@ -39,7 +39,7 @@
                             @if (session('updateCategory'))
                                 <div class="alert alert-success text-small text-center alert-dismissible fade show"
                                     role="alert">
-                                    <p>{{ session('updateCategory') }}</p>
+                                    <small>{{ session('updateCategory') }}</small>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
                                 </div>
