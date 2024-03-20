@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Log In Page');
+@section('title', 'Log In Page')
 @section('content')
     <div class="login-form">
         <form action="{{ route('login') }}" method="post">

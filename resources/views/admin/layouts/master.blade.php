@@ -126,8 +126,13 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                alt="Profile Image" />
+                                            @if (Auth::user()->image == null)
+                                                <img src="{{ asset('image/default_user.png') }}"
+                                                    alt="Profile Image" />"
+                                            @else
+                                                <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
+                                                    alt="Profile Image" />"
+                                            @endif
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn text-decoration-none"
@@ -137,8 +142,13 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                            alt="Profile Image" />
+                                                        @if (Auth::user()->image == null)
+                                                            <img src="{{ asset('image/default_user.png') }}"
+                                                                alt="Profile Image" />"
+                                                        @else
+                                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
+                                                                alt="Profile Image" />"
+                                                        @endif
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -146,13 +156,14 @@
                                                         <a href="#"
                                                             class="text-decoration-none">{{ Auth::user()->name }}</a>
                                                     </h5>
-                                                    <span class="email">{{ Auth::user()->email }}</span>
+                                                    <span class="email d-block">{{ Auth::user()->email }}</span>
                                                     <span class=" text-uppercase">{{ Auth::user()->role }}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#" class=" text-decoration-none">
+                                                    <a href="{{ route('admin#details') }}"
+                                                        class=" text-decoration-none">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
@@ -161,7 +172,7 @@
                                                         <i class="zmdi zmdi-key"></i>Change Password</a>
                                                 </div>
                                             </div>
-                                            <div class="account-dropdown__footer">
+                                            <div class="account-dropdown__footer m-3">
                                                 <form action="{{ route('logout') }}" method="post">
                                                     @csrf
                                                     <button type="submit"

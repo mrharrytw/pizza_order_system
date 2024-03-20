@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Create Category')
+@section('title', 'Change Password')
 @section('content')
     <!-- MAIN CONTENT-->
     <div class="main-content">

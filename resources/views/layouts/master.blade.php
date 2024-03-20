@@ -51,7 +51,7 @@
         <div class="page-content--bge5">
             <div class="container">
                 <div class="login-wrap">
-                    <div class="login-content">
+                    <div class="login-content shadow">
                         <div class="login-logo">
                             <a href="#">
                                 <img src="{{ asset('admin/images/icon/logo.png') }}" alt="CoolAdmin">

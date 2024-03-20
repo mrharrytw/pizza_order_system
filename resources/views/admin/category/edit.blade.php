@@ -46,7 +46,6 @@
                                         <i class="fa-solid fa-circle-up"></i>
                                     </button>
                                 </div>
-
                             </form>
 
                         </div>
