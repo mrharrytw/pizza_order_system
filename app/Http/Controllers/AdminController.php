@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -55,6 +56,21 @@ class AdminController extends Controller
     {
         $this->accountValidationCheck($request);
         $data = $this->getUserData($request);
+
+        // Image Upload and old Image delete
+        if ($request->hasFile('image')) {
+            $oldImageName = User::find($id)->image;
+
+            if ($oldImageName != null) {
+                Storage::delete('public/' . $oldImageName);
+            }
+
+            $newImage = uniqid() . "_admin_" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public', $newImage);
+            $data['image'] = $newImage;
+
+        }
+
         User::where('id', $id)->update($data);
         return redirect()->route('admin#details')->with(['accountInfoChanged' => 'You have updated Admin account Infomation']);
     }

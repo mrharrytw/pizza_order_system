@@ -49,18 +49,18 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="{{ asset('admin/images/icon/logo.png') }}" alt="Cool Admin" />
+                    <img src="{{ asset('admin/images/icon/logo2.png') }}" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="{{ route('category#list') }}">
+                            <a href="{{ route('category#list') }}" class="text-danger">
                                 <i class="fas fa-chart-bar"></i>Category</a>
                         </li>
                         <li>
-                            <a href="customerList.html">
+                            <a href="customerList.html" class="text-danger">
                                 <i class="fas fa-chart-bar"></i>Customers</a>
                         </li>
                     </ul>
@@ -77,18 +77,19 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <div class="mt-1">
-                                <div class="h2 text-dark">
+                                <div class="h1 text-light"
+                                    style="text-shadow: 0px 0px 3px rgba(0,0,0,0.8); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
                                     Admin Dashboard Panel
                                 </div>
                             </div>
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-notifications"></i>
+                                        <i class="zmdi zmdi-notifications text-light"></i>
                                         <span class="quantity">3</span>
                                         <div class="notifi-dropdown js-dropdown">
                                             <div class="notifi__title">
-                                                <p>You have 3 Notifications</p>
+                                                <p class="text-danger">You have 3 Notifications</p>
                                             </div>
                                             <div class="notifi__item">
                                                 <div class="bg-c1 img-cir img-40">
@@ -118,7 +119,7 @@
                                                 </div>
                                             </div>
                                             <div class="notifi__footer">
-                                                <a href="#">All notifications</a>
+                                                <a href="#" class="text-danger">All notifications</a>
                                             </div>
                                         </div>
                                     </div>
@@ -128,14 +129,14 @@
                                         <div class="image">
                                             @if (Auth::user()->image == null)
                                                 <img src="{{ asset('image/default_user.png') }}"
-                                                    alt="Profile Image" />"
+                                                    alt="Profile Image" />
                                             @else
-                                                <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                    alt="Profile Image" />"
+                                                <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                                    alt="Profile Image" />
                                             @endif
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn text-decoration-none"
+                                            <a class="js-acc-btn text-decoration-none text-light"
                                                 href="#">{{ Auth::user()->name }}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
@@ -144,31 +145,33 @@
                                                     <a href="#">
                                                         @if (Auth::user()->image == null)
                                                             <img src="{{ asset('image/default_user.png') }}"
-                                                                alt="Profile Image" />"
+                                                                alt="Profile Image" />
                                                         @else
-                                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                                alt="Profile Image" />"
+                                                            <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                                                alt="Profile Image" />
                                                         @endif
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
                                                         <a href="#"
-                                                            class="text-decoration-none">{{ Auth::user()->name }}</a>
+                                                            class="text-decoration-none text-danger">{{ Auth::user()->name }}</a>
                                                     </h5>
-                                                    <span class="email d-block">{{ Auth::user()->email }}</span>
-                                                    <span class=" text-uppercase">{{ Auth::user()->role }}</span>
+                                                    <span
+                                                        class="email d-block text-danger">{{ Auth::user()->email }}</span>
+                                                    <span
+                                                        class=" text-uppercase text-danger">{{ Auth::user()->role }}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('admin#details') }}"
-                                                        class=" text-decoration-none">
+                                                        class=" text-decoration-none text-danger">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('admin#changePasswordPage') }}"
-                                                        class=" text-decoration-none">
+                                                        class=" text-decoration-none text-danger">
                                                         <i class="zmdi zmdi-key"></i>Change Password</a>
                                                 </div>
                                             </div>
@@ -176,7 +179,7 @@
                                                 <form action="{{ route('logout') }}" method="post">
                                                     @csrf
                                                     <button type="submit"
-                                                        class="btn btn-sm btn-dark rounded-0 px-5 col-12">
+                                                        class="btn btn-sm btn-danger rounded-0 px-5 col-12">
                                                         <i class="zmdi zmdi-power me-2"></i> Logout
                                                     </button>
                                                 </form>

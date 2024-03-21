@@ -3,24 +3,24 @@
     @section('content')
         <!-- MAIN CONTENT-->
         <div class="main-content">
-            <div class="section__content section__content--p30">
+            <div class="section__content section__content--p30 pb-3">
                 <div class="container-fluid">
                     <div class="col-12">
                         <!-- DATA TABLE -->
                         <div class="table-data__tool">
                             <div class="table-data__tool-left">
                                 <div class="overview-wrap">
-                                    <h2 class="title-1">Category List</h2>
+                                    <h2 class="title-1 text-danger">Category List</h2>
 
                                 </div>
                             </div>
                             <div class="table-data__tool-right">
                                 <a href="{{ route('category#createPage') }}">
-                                    <button class="au-btn au-btn-icon au-btn--dark au-btn--small">
+                                    <button class="au-btn au-btn-icon au-btn--red au-btn--small">
                                         <i class="zmdi zmdi-plus"></i>add category
                                     </button>
                                 </a>
-                                <button class="au-btn au-btn-icon au-btn--dark au-btn--small">
+                                <button class="au-btn au-btn-icon au-btn--red au-btn--small">
                                     CSV download
                                 </button>
                             </div>
@@ -61,7 +61,7 @@
                                     <div class="input-group">
                                         <input class="form-control" name="searchkey" value="{{ request('searchkey') }}"
                                             type="search" placeholder="Search category..." aria-label="Search">
-                                        <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-search"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -74,9 +74,9 @@
                                 <table class="table table-data2">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Category Name</th>
-                                            <th>Created Date</th>
+                                            <th class="text-danger">ID</th>
+                                            <th class="text-danger">Category Name</th>
+                                            <th class="text-danger">Created Date</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -85,26 +85,22 @@
                                             <tr class="tr-shadow">
                                                 <td>{{ $category->id }}</td>
 
-                                                <td class="desc">{{ $category->name }}</td>
+                                                <td>{{ $category->name }}</td>
 
                                                 <td>{{ $category->created_at->format('d-M-Y | n:i A') }}</td>
 
                                                 <td>
                                                     <div class="table-data-feature">
-                                                        {{-- <button class="item mx-2" data-toggle="tooltip" data-placement="top"
-                                                            title="view">
-                                                            <i class="zmdi zmdi-eye"></i>
-                                                        </button> --}}
                                                         <a href="{{ route('category#edit', $category->id) }}">
                                                             <button class="item mx-2" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit">
-                                                                <i class="zmdi zmdi-edit"></i>
+                                                                <i class="zmdi zmdi-edit text-danger"></i>
                                                             </button>
                                                         </a>
                                                         <a href="{{ route('category#delete', $category->id) }}">
                                                             <button class="item mx-2" data-toggle="tooltip"
                                                                 data-placement="top" title="Delete">
-                                                                <i class="zmdi zmdi-delete"></i>
+                                                                <i class="zmdi zmdi-delete text-danger"></i>
                                                             </button>
                                                         </a>
                                                     </div>

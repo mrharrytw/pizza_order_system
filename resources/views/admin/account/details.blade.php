@@ -10,11 +10,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title">
-                                <h3 class="text-center title-2"><i class="fa-regular fa-address-card"></i> Account Info</h3>
+                                <h3 class="text-center text-danger title-2"><i class="fa-regular fa-address-card"></i> Account
+                                    Info</h3>
                             </div>
                             <hr>
                             {{-- Account Update Alert --}}
-                            <div class="col-10 offset-1">
+                            <div class="col-12">
                                 @if (session('accountInfoChanged'))
                                     <div class="alert alert-success text-small text-center alert-dismissible fade show"
                                         role="alert">
@@ -33,13 +34,12 @@
                                             <img src="{{ asset('image/default_user.png') }}" class="img-thumbnail"
                                                 alt="Profile Image" />
                                         @else
-                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                alt="Profile Image" />"
+                                            <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Profile Image" />
                                         @endif
                                     </div>
-                                    <div class="text-center mt-2">
-                                        <a href="{{ route('admin#edit') }}">
-                                            <button class="btn btn-dark btn-sm rounded-0 text-white px-4">
+                                    <div class="mt-2">
+                                        <a href="{{ route('admin#edit') }}" class="d-grid text-decoration-none">
+                                            <button class="btn btn-danger btn-sm rounded-0 text-white px-4">
                                                 <i class="fa-regular fa-pen-to-square me-2"></i>Edit Profile
                                             </button>
                                         </a>
@@ -108,6 +108,16 @@
                                                 </button>
                                             </div>
                                         </li>
+                                        <li class="mb-2">
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-secondary opacity-75 text-start"
+                                                    style="width: 120px">Role
+                                                </button>
+                                                <button class="btn btn-sm btn-light text-start" style="width: 400px">
+                                                    {{ ucfirst(Auth::user()->role) }}
+                                                </button>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -117,7 +127,7 @@
 
                             <div class="text-end">
                                 <a href="{{ route('category#list') }}">
-                                    <button class="btn btn-dark btn-sm rounded-0 text-white px-4">
+                                    <button class="btn btn-danger btn-sm rounded-0 text-white px-4">
                                         Back
                                     </button>
                                 </a>

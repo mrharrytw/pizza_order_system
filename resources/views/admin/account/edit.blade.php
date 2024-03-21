@@ -12,7 +12,8 @@
                         <div class="card-body">
 
                             <div class="card-title">
-                                <h3 class="text-center title-2"><i class="fa-regular fa-pen-to-square me-2"></i> Edit Profile
+                                <h3 class="text-center text-danger title-2"><i class="fa-regular fa-pen-to-square me-2"></i>
+                                    Edit Profile
                                 </h3>
                             </div>
 
@@ -25,12 +26,11 @@
                                             <img src="{{ asset('image/default_user.png') }}" class="img-thumbnail"
                                                 alt="Profile Image" />
                                         @else
-                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                alt="Profile Image" />"
+                                            <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Profile Image" />
                                         @endif
                                     </div>
                                     <div class="text-center mt-2">
-                                        <span class="text-muted">
+                                        <span class="text-danger">
                                             <i class="fa-solid fa-user me-2"></i>{{ ucfirst(Auth::user()->role) }}
                                         </span>
                                     </div>
@@ -116,7 +116,7 @@
 
                                         <div>
                                             <button id="payment-button" type="submit"
-                                                class="btn btn-sm btn-dark btn-block">
+                                                class="btn btn-sm btn-danger btn-block">
                                                 Update <i class="fa-solid fa-circle-up"></i>
                                             </button>
                                         </div>
@@ -128,7 +128,7 @@
                         <div class="card-footer">
                             <div class="text-end">
                                 <a href="{{ route('admin#details') }}">
-                                    <button class="btn btn-dark btn-sm rounded-0 text-white px-4">
+                                    <button class="btn btn-danger btn-sm rounded-0 text-white px-4">
                                         Back
                                     </button>
                                 </a>

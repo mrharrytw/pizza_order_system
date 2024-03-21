@@ -10,7 +10,7 @@
 
                     <div class=" text-end">
                         <a href="{{ route('category#list') }}">
-                            <button class="btn btn-dark text-white my-3 px-4">
+                            <button class="btn btn-sm btn-danger text-white my-3 px-4">
                                 <i class="fa-solid fa-xmark"></i> &nbsp;Cancle
                             </button>
                         </a>
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div>
-                                    <button id="payment-button" type="submit" class="btn btn-lg btn-dark btn-block">
+                                    <button id="payment-button" type="submit" class="btn btn-sm btn-danger btn-block">
                                         <span id="payment-button-amount">
                                             <i class="zmdi zmdi-key me-2"></i> Change Password
                                         </span>

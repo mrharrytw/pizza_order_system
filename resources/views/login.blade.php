@@ -6,7 +6,7 @@
             @csrf
 
             <div class="form-group">
-                <label>Email Address</label>
+                <label class="text-danger">Email Address</label>
                 <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
                 @error('email')
                     <small class="text-danger">
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <label>Password</label>
+                <label class="text-danger">Password</label>
                 <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
                 @error('password')
                     <small class="text-danger">
@@ -27,7 +27,7 @@
                 @enderror
             </div>
 
-            <button class="au-btn au-btn--block au-btn--dark m-b-20" type="submit">
+            <button class="au-btn au-btn--block au-btn--red m-b-20" type="submit">
                 Sign in
             </button>
 

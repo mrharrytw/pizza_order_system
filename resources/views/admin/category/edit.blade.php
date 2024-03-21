@@ -9,7 +9,7 @@
                 <div class="col-lg-6 offset-3">
                     <div class=" text-end">
                         <a href="{{ route('category#list') }}">
-                            <button class="btn btn-dark text-white my-3 px-4">
+                            <button class="btn btn-danger text-white my-3 px-4">
                                 <i class="fa-solid fa-backward"></i> &nbsp; Category List
                             </button>
                         </a>
@@ -25,7 +25,7 @@
                                 @csrf
                                 <div class="form-group my-4">
                                     <label for="cc-payment" class="control-label mb-1">Name</label>
-                                    <span class="float-right me-2 text-primary">
+                                    <span class="float-right me-2 text-danger">
                                         Category Id: {{ $category->id }}
                                     </span>
                                     <input type="hidden" name="categoryId" value="{{ $category->id }}">
@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div>
-                                    <button id="payment-button" type="submit" class="btn btn-lg btn-dark btn-block">
+                                    <button id="payment-button" type="submit" class="btn btn-lg btn-danger btn-block">
                                         <span id="payment-button-amount">Update</span>
                                         <span id="payment-button-sending" style="display:none;">Sending…</span>
                                         <i class="fa-solid fa-circle-up"></i>
