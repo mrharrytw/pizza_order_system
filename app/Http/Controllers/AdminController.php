@@ -59,18 +59,17 @@ class AdminController extends Controller
 
         // Image Upload and old Image delete
         if ($request->hasFile('image')) {
-            $oldImageName = User::find($id)->image;
 
+            $oldImageName = User::find($id)->image;
             if ($oldImageName != null) {
                 Storage::delete('public/' . $oldImageName);
             }
 
-            $newImage = uniqid() . "_admin_" . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public', $newImage);
-            $data['image'] = $newImage;
+            $newImageName = uniqid() . "_admin_" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public', $newImageName);
+            $data['image'] = $newImageName;
 
         }
-
         User::where('id', $id)->update($data);
         return redirect()->route('admin#details')->with(['accountInfoChanged' => 'You have updated Admin account Infomation']);
     }
@@ -95,6 +94,7 @@ class AdminController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'address' => 'required',
+            'image' => 'mimes:png,jpg,jpeg|file'
         ])->validate();
     }
 

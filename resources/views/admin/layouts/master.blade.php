@@ -60,8 +60,8 @@
                                 <i class="fas fa-chart-bar"></i>Category</a>
                         </li>
                         <li>
-                            <a href="customerList.html" class="text-danger">
-                                <i class="fas fa-chart-bar"></i>Customers</a>
+                            <a href="{{ route('products#productslist') }}" class="text-danger">
+                                <i class="fa-solid fa-pizza-slice"></i>Products</a>
                         </li>
                     </ul>
                 </nav>
@@ -197,8 +197,15 @@
 
             @yield('content')
 
-            <!-- END PAGE CONTAINER-->
+
+
+            <footer class="user-data__footer bg-danger">
+                <div class="container">
+                    <div class="footer_note">This project is built with <span class="txtani"></span> .</div>
+                </div>
+            </footer>
         </div>
+        <!-- END PAGE CONTAINER-->
 
     </div>
 

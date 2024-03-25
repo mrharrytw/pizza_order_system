@@ -34,6 +34,7 @@ class CategoryController extends Controller
         Category::create($data);
         return redirect()->route('category#list');
     }
+
     //edit category
     public function edit($id)
     {

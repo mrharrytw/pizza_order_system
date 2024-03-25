@@ -318,14 +318,15 @@ section {
 }
 
 .main-content {
-    padding-top: 116px;
+    padding-top: 115px;
     min-height: 100vh;
+    padding-bottom: 70px;
 }
 
 @media (max-width: 991px) {
     .main-content {
         padding-top: 50px;
-        padding-bottom: 100px;
+        padding-bottom: 150px;
     }
 }
 
@@ -3981,9 +3982,51 @@ section {
 }
 
 .user-data__footer {
-    padding: 29px 0;
+    padding: 10px 0;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
 }
+
+/* footer animation start */
+.footer_note {
+    font-size: 25px;
+    color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: 2px;
+}
+
+span.txtani {
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 0 0 2px #f2f2f2;
+    animation-name: mycursorani;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+}
+
+.blue {
+    color: #6F2CF5;
+}
+
+.yellow {
+    color: yellow;
+}
+
+@keyframes mycursorani {
+    from {
+        border: none;
+    }
+
+    to {
+        border-right: 2px solid #bbb;
+    }
+}
+
+/* footer animation end */
 
 .map-data {
     border: 1px solid #e5e5e5;

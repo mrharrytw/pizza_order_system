@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Models\Category;
 
 
@@ -24,6 +25,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['admin_auth'])->group(function () {
 
+        // admin -> account
+        Route::prefix('admin')->group(function () {
+            // Password
+            Route::get('password/changePage', [AdminController::class, 'changePasswordPage'])->name('admin#changePasswordPage');
+            Route::post('change/password', [AdminController::class, 'changePassword'])->name('admin#changePassword');
+
+            // account info
+            Route::get('details', [AdminController::class, 'details'])->name('admin#details');
+            Route::get('edit', [AdminController::class, 'edit'])->name('admin#edit');
+            Route::post('update/{id}', [AdminController::class, 'update'])->name('admin#update');
+        });
+
         // admin -> category
         Route::prefix('category')->group(function () {
             Route::get('list', [CategoryController::class, 'list'])->name('category#list');
@@ -34,15 +47,16 @@ Route::middleware(['auth'])->group(function () {
             Route::post('update', [CategoryController::class, 'update'])->name('category#update');
         });
 
-        Route::prefix('admin')->group(function () {
-            // Password
-            Route::get('password/changePage', [AdminController::class, 'changePasswordPage'])->name('admin#changePasswordPage');
-            Route::post('change/password', [AdminController::class, 'changePassword'])->name('admin#changePassword');
+        // admin -> products_list
+        Route::prefix('products')->group(function () {
+            Route::get('productslist', [ProductController::class, 'productslist'])->name('products#productslist');
+            Route::get('create_page', [ProductController::class, 'createpage'])->name('products#createProductsPage');
+            Route::post('create_product', [ProductController::class, 'createproducts'])->name('products#createProduct');
+            Route::get('delete/{id}', [ProductController::class, 'productDelete'])->name('products#delete');
+            Route::get('detail,{id}', [ProductController::class, 'productDetail'])->name('product#detail');
+            Route::get('editProduct,{id}', [ProductController::class, 'editProduct'])->name('products#editProduct');
+            Route::post('updateProduct', [ProductController::class, 'updateProduct'])->name('product#update');
 
-            // account info
-            Route::get('details', [AdminController::class, 'details'])->name('admin#details');
-            Route::get('edit', [AdminController::class, 'edit'])->name('admin#edit');
-            Route::post('update/{id}', [AdminController::class, 'update'])->name('admin#update');
         });
     });
 

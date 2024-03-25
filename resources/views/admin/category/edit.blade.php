@@ -9,7 +9,7 @@
                 <div class="col-lg-6 offset-3">
                     <div class=" text-end">
                         <a href="{{ route('category#list') }}">
-                            <button class="btn btn-danger text-white my-3 px-4">
+                            <button class="btn btn-danger btn-sm text-white my-3 px-4">
                                 <i class="fa-solid fa-backward"></i> &nbsp; Category List
                             </button>
                         </a>
@@ -40,9 +40,9 @@
                                 </div>
 
                                 <div>
-                                    <button id="payment-button" type="submit" class="btn btn-lg btn-danger btn-block">
+                                    <button id="payment-button" type="submit" class="btn btn-sm btn-danger btn-block">
                                         <span id="payment-button-amount">Update</span>
-                                        <span id="payment-button-sending" style="display:none;">Sending…</span>
+
                                         <i class="fa-solid fa-circle-up"></i>
                                     </button>
                                 </div>
