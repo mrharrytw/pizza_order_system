@@ -68,7 +68,7 @@
                                         <div class="form-group mb-3">
                                             <label for="cc-payment" class="control-label mb-1">Category</label>
                                             <select name="category"
-                                                class="form-control @error('category') is-invalid  @enderror">
+                                                class="form-select @error('category') is-invalid  @enderror">
                                                 <option value="" selected disabled>Choose a category
                                                 </option>
                                                 @foreach ($categories as $category)

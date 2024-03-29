@@ -54,7 +54,7 @@
                                         <div class="form-group mb-3">
                                             <label for="cc-payment" class="control-label mb-1">Gender</label>
                                             <select name="gender"
-                                                class="form-control @error('gender') is-invalid  @enderror">
+                                                class="form-select @error('gender') is-invalid  @enderror">
                                                 <option value="male" @if (Auth::user()->gender == 'male') selected @endif>
                                                     Male
                                                 </option>

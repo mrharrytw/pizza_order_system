@@ -93,7 +93,7 @@
 
                                             <td class="col-2">{{ $product->price }} Kyats</td>
 
-                                            <td class="col-2">{{ $product->category_id }}</td>
+                                            <td class="col-2">{{ $product->category_name }}</td>
 
                                             <td class="col-2">{{ $product->view_count }}
                                             </td>
