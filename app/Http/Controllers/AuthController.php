@@ -13,13 +13,13 @@ class AuthController extends Controller
     //direct login Page
     public function loginPage()
     {
-        return view('login');
+        return view('loginAndRegister.login');
     }
 
     //direct register Page
     public function registerPage()
     {
-        return view('register');
+        return view('loginAndRegister.register');
     }
 
 

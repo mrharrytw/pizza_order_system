@@ -35,6 +35,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('details', [AdminController::class, 'details'])->name('admin#details');
             Route::get('edit', [AdminController::class, 'edit'])->name('admin#edit');
             Route::post('update/{id}', [AdminController::class, 'update'])->name('admin#update');
+
+            // admin list
+            Route::get('adminlist', [AdminController::class, 'adminlist'])->name('admin#adminlist');
+            Route::get('listdelete/{id}', [AdminController::class, 'listdelete'])->name('admin#listdelete');
+            Route::get('changerole/{id}', [AdminController::class, 'changerole'])->name('admin#changerole');
+            Route::post('roleupdate/{id}', [AdminController::class, 'roleupdate'])->name('admin#roleUpdate');
         });
 
         // admin -> category

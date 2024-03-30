@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('loginAndRegister.layouts.master')
 @section('title', 'Log In Page')
 @section('content')
     <div class="login-form">
@@ -7,7 +7,7 @@
 
             <div class="form-group">
                 <label class="text-danger">Email Address</label>
-                <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                <input class="form-control au-input au-input--full" type="email" name="email" placeholder="Email">
                 @error('email')
                     <small class="text-danger">
                         <i class="fa-solid fa-triangle-exclamation"></i>
@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label class="text-danger">Password</label>
-                <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                <input class="form-control au-input au-input--full" type="password" name="password" placeholder="Password">
                 @error('password')
                     <small class="text-danger">
                         <i class="fa-solid fa-triangle-exclamation"></i>

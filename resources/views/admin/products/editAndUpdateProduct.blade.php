@@ -10,20 +10,17 @@
                     <div class="card">
 
                         <div class="card-body">
-
-                            <div class="card-title">
-                                <div class="row">
-                                    <div class="col-3 ps-2">
-                                        <button class="btn btn-danger btn-sm rounded-0 text-white px-4"
-                                            onclick="history.back()"> <i class="fa-solid fa-chevron-left me-2"></i> Back
-                                        </button>
-                                    </div>
-                                    <div class="col-7">
-                                        <h3 class="text-center text-danger title-2"><i
-                                                class="fa-regular fa-pen-to-square me-2"></i>
-                                            Edit Product Information
-                                        </h3>
-                                    </div>
+                            <div class="row">
+                                <div class="col-3 ps-2">
+                                    <button class="btn btn-danger btn-sm rounded-0 text-white px-4" onclick="history.back()">
+                                        <i class="fa-solid fa-chevron-left me-2"></i> Back
+                                    </button>
+                                </div>
+                                <div class="col-7">
+                                    <h3 class="text-center text-danger title-2"><i
+                                            class="fa-regular fa-pen-to-square me-2"></i>
+                                        Edit Product Information
+                                    </h3>
                                 </div>
                             </div>
 

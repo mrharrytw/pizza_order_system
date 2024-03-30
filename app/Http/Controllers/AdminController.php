@@ -45,6 +45,44 @@ class AdminController extends Controller
         return view('admin.account.details');
     }
 
+    // direct view admin list page
+    public function adminlist()
+    {
+        $admins = User::when(request('searchkey'), function ($queryforsearch) {
+            $queryforsearch->orWhere('name', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('email', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('gender', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('phone', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('address', 'like', '%' . request('searchkey') . '%');
+        })
+            ->where('role', 'admin')
+            ->orderBy('name')
+            ->paginate(3);
+        return view('admin.account.adminlist', compact('admins'));
+    }
+
+    // admin list delete
+    public function listdelete($id)
+    {
+        User::find($id)->delete();
+        return back()->with(['deleteList' => 'You have deleted an admin account!']);
+    }
+
+    // admin change role
+    public function changerole($id)
+    {
+        $accounts = User::find($id);
+        return view('admin.account.changerole', compact('accounts'));
+    }
+
+    // admin role update
+    public function roleupdate($id, Request $request)
+    {
+        $data = $request->role;
+        User::find($id)->update(['role' => $data]);
+        return redirect()->route('admin#adminlist');
+    }
+
     // direct view edit admin profile
     public function edit()
     {

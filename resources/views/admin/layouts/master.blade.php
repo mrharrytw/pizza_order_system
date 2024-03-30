@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="header-button">
-                                <div class="noti-wrap">
+                                {{-- <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
                                         <i class="zmdi zmdi-notifications text-light"></i>
                                         <span class="quantity">3</span>
@@ -123,16 +123,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            @if (Auth::user()->image == null)
-                                                <img src="{{ asset('image/default_user.png') }}"
-                                                    alt="Profile Image" />
-                                            @else
+                                            @if (Auth::user()->image != null)
                                                 <img src="{{ asset('storage/' . Auth::user()->image) }}"
                                                     alt="Profile Image" />
+                                            @else
+                                                @if (Auth::user()->gender == 'male')
+                                                    <img src="{{ asset('image/male_default_user.png') }}"
+                                                        alt="Profile Image" />
+                                                @else
+                                                    <img src="{{ asset('image/female_default_user.png') }}"
+                                                        alt="Profile Image" />
+                                                @endif
                                             @endif
                                         </div>
                                         <div class="content">
@@ -143,24 +148,34 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        @if (Auth::user()->image == null)
-                                                            <img src="{{ asset('image/default_user.png') }}"
-                                                                alt="Profile Image" />
-                                                        @else
+                                                        @if (Auth::user()->image != null)
                                                             <img src="{{ asset('storage/' . Auth::user()->image) }}"
                                                                 alt="Profile Image" />
+                                                        @else
+                                                            @if (Auth::user()->gender == 'male')
+                                                                <img src="{{ asset('image/male_default_user.png') }}"
+                                                                    alt="Profile Image" />
+                                                            @else
+                                                                <img src="{{ asset('image/female_default_user.png') }}"
+                                                                    alt="Profile Image" />
+                                                            @endif
                                                         @endif
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"
-                                                            class="text-decoration-none text-danger">{{ Auth::user()->name }}</a>
+                                                        <a href="#" class="text-decoration-none text-danger">
+                                                            {{ Auth::user()->name }}
+                                                        </a>
                                                     </h5>
-                                                    <span
-                                                        class="email d-block text-danger">{{ Auth::user()->email }}</span>
-                                                    <span
-                                                        class=" text-uppercase text-danger">{{ Auth::user()->role }}</span>
+
+                                                    <span class="email d-block text-danger">
+                                                        {{ Auth::user()->email }}
+                                                    </span>
+
+                                                    <span class=" text-uppercase text-danger">
+                                                        {{ Auth::user()->role }}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -168,6 +183,11 @@
                                                     <a href="{{ route('admin#details') }}"
                                                         class=" text-decoration-none text-danger">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="{{ route('admin#adminlist') }}"
+                                                        class=" text-decoration-none text-danger">
+                                                        <i class="zmdi zmdi-accounts"></i>Admin List</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('admin#changePasswordPage') }}"

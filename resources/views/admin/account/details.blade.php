@@ -30,11 +30,15 @@
                             <div class="row">
                                 <div class="col-3 offset-1">
                                     <div class="image">
-                                        @if (Auth::user()->image == null)
-                                            <img src="{{ asset('image/default_user.png') }}" class="img-thumbnail"
-                                                alt="Profile Image" />
-                                        @else
+                                        @if (Auth::user()->image != null)
                                             <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Profile Image" />
+                                        @else
+                                            @if (Auth::user()->gender == 'male')
+                                                <img src="{{ asset('image/male_default_user.png') }}" alt="Profile Image" />
+                                            @else
+                                                <img src="{{ asset('image/female_default_user.png') }}"
+                                                    alt="Profile Image" />
+                                            @endif
                                         @endif
                                     </div>
                                     <div class="mt-2">
