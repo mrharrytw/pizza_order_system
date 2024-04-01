@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\UserController;
 use App\Models\Category;
 
 
@@ -22,7 +23,6 @@ Route::middleware(['auth'])->group(function () {
 
     // admin
     // Route::group(['middleware' => 'admin_auth', 'prefix' => 'category', 'namespace' => 'admin'], function () { });
-
     Route::middleware(['admin_auth'])->group(function () {
 
         // admin -> account
@@ -68,12 +68,36 @@ Route::middleware(['auth'])->group(function () {
 
 
     // User
-    // User -> Home
-    Route::group(['prefix' => 'user', 'middleware' => 'user_auth'], function () {
-        Route::get('home', function () {
-            return view('user.home');
-        })->name('user#home');
+    Route::middleware(['user_auth'])->group(function () {
+
+        // user home
+        Route::prefix('user')->group(function () {
+            Route::get('home', [UserController::class, 'userhome'])->name('user#home');
+        });
+
+        // change password
+        Route::prefix('password')->group(function () {
+            Route::get('change_password', [UserController::class, 'changepwpage'])->name('user#changepwpage');
+            Route::post('change_password', [UserController::class, 'changePassword'])->name('user#changePassword');
+        });
+
+        // account
+        Route::prefix('account')->group(function () {
+            Route::get('view_account', [UserController::class, 'viewAccount'])->name('user#viewaccount');
+            Route::get('edit_account/{id}', [UserController::class, 'editAccount'])->name('user#editaccount');
+            Route::post('update_account/{id}', [UserController::class, 'updateAccount'])->name('user#updateaccount');
+        });
+
+
+
     });
+
+
+    // Route::group(['prefix' => 'user', 'middleware' => 'user_auth'], function () {
+    //     Route::get('home', function () {
+    //         return view('user.home');
+    //     })->name('user#home');
+    // });
 
 });
 

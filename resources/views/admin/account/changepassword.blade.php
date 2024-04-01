@@ -56,6 +56,9 @@
                                     @enderror
                                 </div>
 
+                                <input type="checkbox" id="showPW" class="mb-3" onclick="myFunction()">
+                                <label for="showPW" style="font-size: 15px; user-select: none;">Show Password</label>
+
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-sm btn-danger btn-block">
                                         <span id="payment-button-amount">
@@ -73,5 +76,17 @@
             </div>
         </div>
     </div>
+    <script>
+        function myFunction() {
+            var pw = document.querySelectorAll(".form-control");
+            pw.forEach(function(input) {
+                if (input.type === "password") {
+                    input.type = "text";
+                } else {
+                    input.type = "password";
+                }
+            });
+        }
+    </script>
     <!-- END MAIN CONTENT-->
 @endsection

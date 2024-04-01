@@ -112,6 +112,10 @@ class AdminController extends Controller
         return redirect()->route('admin#details')->with(['accountInfoChanged' => 'You have updated Admin account Infomation']);
     }
 
+
+
+
+    // the following are private functions
     private function getUserData($request)
     {
         return [
