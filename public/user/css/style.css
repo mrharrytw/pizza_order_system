@@ -10894,3 +10894,8 @@ h6 {
         transform: translateY(-15px);
     }
 }
+
+
+#category_filter:hover {
+    color: #dc3545 !important;
+}

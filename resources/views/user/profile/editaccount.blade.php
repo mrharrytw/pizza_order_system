@@ -2,7 +2,7 @@
 @section('title', 'Edit Profile')
 @section('content')
 
-    <div class="col-lg-10 offset-1">
+    <div class="col-lg-10 offset-lg-1">
         <div class="card">
 
             <div class="card-body">
@@ -11,8 +11,8 @@
                     <div class="row">
                         <div class="col-3 ps-2">
                             <a href="{{ route('user#viewaccount') }}">
-                                <button class="btn btn-danger btn-sm rounded-0 text-white pe-4">
-                                    <i class="fa-solid fa-chevron-left ps-2 me-2"></i>
+                                <button class="btn btn-danger btn-sm rounded-0 text-white pe-md-4">
+                                    <i class="fa-solid fa-chevron-left ps-md-2 me-md-2"></i>
                                     Back
                                 </button>
                             </a>
@@ -27,16 +27,19 @@
 
                 <hr>
 
-                <div class="row">
-                    <div class="col-3 offset-1">
-                        <div class="image">
+                <div class="row no-gutters">
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="text-center m-0">
                             @if (Auth::user()->image != null)
-                                <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Profile Image" />
+                                <img src="{{ asset('storage/' . Auth::user()->image) }}" class="img-thumbnail"
+                                    alt="Profile Image" />
                             @else
                                 @if (Auth::user()->gender == 'male')
-                                    <img src="{{ asset('image/male_default_user.png') }}" alt="Profile Image" />
+                                    <img src="{{ asset('image/male_default_user.png') }}" class="img-thumbnail"
+                                        alt="Profile Image" />
                                 @else
-                                    <img src="{{ asset('image/female_default_user.png') }}" alt="Profile Image" />
+                                    <img src="{{ asset('image/female_default_user.png') }}" class="img-thumbnail"
+                                        alt="Profile Image" />
                                 @endif
                             @endif
                         </div>
@@ -47,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="col-6 ms-5">
+                    <div class="col-lg-6 ms-lg-5 mr-3">
                         <form action="{{ route('user#updateaccount', Auth::user()->id) }}" method="post"
                             novalidate="novalidate" enctype="multipart/form-data">
                             @csrf

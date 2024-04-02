@@ -23,6 +23,15 @@ class UserController extends Controller
         return view('user.main.home', compact('products', 'categories'));
     }
 
+    // view user home with category filter
+    public function filterCategory($id)
+    {
+        // dd($id);
+        $products = Product::where('category_id', $id)->get();
+        $categories = Category::get();
+        return view('user.main.home', compact('products', 'categories'));
+    }
+
     // view account
     public function viewAccount()
     {

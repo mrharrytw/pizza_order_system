@@ -1,7 +1,7 @@
 @extends('user.layouts.master')
 @section('title', 'User Profile')
 @section('content')
-    <div class="col-lg-10 offset-1">
+    <div class="col-lg-10 offset-lg-1">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
@@ -20,28 +20,31 @@
                 </div>
                 {{-- Account Update Alert End --}}
 
-                <div class="row">
-                    <div class="col-3 offset-1">
-                        <div class="image">
+                <div class="row no-gutters">
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="image text-center">
                             @if (Auth::user()->image != null)
-                                <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Profile Image" />
+                                <img src="{{ asset('storage/' . Auth::user()->image) }}" class="img-thumbnail"
+                                    alt="Profile Image" />
                             @else
                                 @if (Auth::user()->gender == 'male')
-                                    <img src="{{ asset('image/male_default_user.png') }}" alt="Profile Image" />
+                                    <img src="{{ asset('image/male_default_user.png') }}" class="img-thumbnail"
+                                        alt="Profile Image" />
                                 @else
-                                    <img src="{{ asset('image/female_default_user.png') }}" alt="Profile Image" />
+                                    <img src="{{ asset('image/female_default_user.png') }}" class="img-thumbnail"
+                                        alt="Profile Image" />
                                 @endif
                             @endif
                         </div>
                         <div class="mt-2">
-                            <a href="{{ route('user#editaccount', Auth::user()->id) }}" class="d-grid text-decoration-none">
-                                <button class="btn btn-danger btn-sm rounded-0 text-white px-4">
+                            <a href="{{ route('user#editaccount', Auth::user()->id) }}" class="text-decoration-none">
+                                <button class="btn btn-danger btn-block btn-sm rounded-0 text-white">
                                     <i class="fa-regular fa-pen-to-square me-2"></i>Edit Profile
                                 </button>
                             </a>
                         </div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-lg-7 text-center">
                         <ul class="mt-1 list-unstyled">
                             <li class="mb-2">
                                 <div class="btn-group">

@@ -223,6 +223,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> --}}
 
     <!-- Contact Javascript File -->
     <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
@@ -234,6 +235,7 @@
     <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    @yield('ajax_Script_Section')
 </body>
 
 </html>

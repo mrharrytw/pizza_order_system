@@ -18,7 +18,7 @@ class ProductController extends Controller
                 $queryforsearch->where('products.name', 'like', '%' . request('searchkey') . '%');
             })
             ->leftJoin('categories', 'products.category_id', 'categories.id')
-            ->orderBy('products.name')->paginate(3);
+            ->orderBy('products.id', 'desc')->paginate(3);
         return view('admin.products.productslist', compact('products'));
     }
 

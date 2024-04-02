@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\AjaxController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Category;
 
@@ -73,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
         // user home
         Route::prefix('user')->group(function () {
             Route::get('home', [UserController::class, 'userhome'])->name('user#home');
+            Route::get('filter_category/{id}', [UserController::class, 'filterCategory'])->name('user#filtercategory');
         });
 
         // change password
@@ -86,6 +88,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('view_account', [UserController::class, 'viewAccount'])->name('user#viewaccount');
             Route::get('edit_account/{id}', [UserController::class, 'editAccount'])->name('user#editaccount');
             Route::post('update_account/{id}', [UserController::class, 'updateAccount'])->name('user#updateaccount');
+        });
+
+        // ajax
+        Route::prefix('ajax')->group(function () {
+            Route::get('pizza_list', [AjaxController::class, 'pizzaList'])->name('ajax#pizzalist');
         });
 
 

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 offset-3">
+            <div class="col-lg-6 offset-lg-3">
 
                 <div class=" text-end">
                     <a href="{{ route('user#home') }}">
