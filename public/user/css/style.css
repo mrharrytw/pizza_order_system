@@ -2077,9 +2077,9 @@ pre code {
     background-color: rgba(0, 0, 0, 0.075);
 }
 
-.table .thead-dark th {
+.table .thead-danger th {
     color: #fff;
-    background-color: #343a40;
+    background-color: #dc3545;
     border-color: #454d55;
 }
 
@@ -10624,9 +10624,9 @@ a.text-dark:focus {
         border-color: #dee2e6;
     }
 
-    .table .thead-dark th {
+    .table .thead-danger th {
         color: inherit;
-        border-color: #dee2e6;
+        border-color: #dc3545;
     }
 }
 

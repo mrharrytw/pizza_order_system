@@ -12,7 +12,7 @@
                             <div class="card-title">
                                 <div class="row">
                                     <div class="col-3 ps-2">
-                                        <button class="btn btn-danger btn-sm rounded-0 text-white px-4"
+                                        <button class="btn btn-danger btn-sm rounded-0 text-white pe-md-4"
                                             onclick="history.back()"> <i class="fa-solid fa-chevron-left me-2"></i> Back
                                         </button>
                                     </div>
@@ -85,9 +85,9 @@
 
                             </div>
 
-                            <div class="card-footer">
-                                <div class="text-end me-5">
-
+                            <div class="card-footer mt-2">
+                                <div class="text-center fs-5 text-danger">
+                                    Bon appetit..
                                 </div>
                             </div>
 

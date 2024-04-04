@@ -60,23 +60,17 @@
 
                         <div class="navbar-nav mr-auto ml-1 py-0 h4">
                             <a href="{{ route('user#home') }}" class="nav-item nav-link active">Home</a>
-                            <a href="cart.html" class="nav-item nav-link">My Cart</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            {{-- <a href="{{ route('user#mycart') }}" class="nav-item nav-link">My Cart</a> --}}
+                            <a href="#" class="nav-item nav-link">Contact</a>
                         </div>
 
-                        <div class="navbar-nav ml-auto py-0 d-none d-lg-block me-2">
-                            <a href="" class="btn px-0 ml-3">
-                                <i class="fas fa-shopping-cart text-primary fs-5"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
-                            </a>
-                        </div>
+
 
                         <div class="dropdown">
                             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user fs-5 me-2"></i>
-                                {{ Auth::user()->name }}
+                                {{ ucfirst(Auth::user()->name) }}
                                 <i class="fa-solid fa-caret-down ms-3"></i>
                             </a>
 
@@ -99,6 +93,8 @@
                                 </span>
                             </div>
                         </div>
+
+
                     </div>
                 </nav>
             </div>
@@ -106,21 +102,6 @@
         </div>
     </div>
     <!-- Navbar End -->
-
-
-    <!-- Breadcrumb Start -->
-    {{-- <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Shop List</span>
-                </nav>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Breadcrumb End -->
 
 
     @yield('content')
@@ -141,8 +122,7 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop

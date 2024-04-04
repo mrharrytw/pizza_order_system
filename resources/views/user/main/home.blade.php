@@ -22,7 +22,9 @@
                             <a href="{{ route('user#filtercategory', $category->id) }}" class="text-decoration-none">
                                 <span class="text-dark" id="category_filter">{{ $category->name }}</span>
                             </a>
-                            {{-- <span class="badge border font-weight-normal text-dark"> # </span> --}}
+                            <span class="badge bg-warning border font-weight-normal text-dark">
+                                {{ $category->products->count() }}
+                            </span>
                         </div>
                     @endforeach
                     <div class="d-flex align-items-center justify-content-between mb-3 px-4 pb-1">
@@ -50,16 +52,31 @@
                         <div class="d-flex align-items-center justify-content-between mb-4">
 
                             <div>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                                <a href="{{ route('user#mycart') }}">
+                                    <button type="button" class="btn btn-light position-relative">
+                                        <i class="fa-solid fa-cart-shopping text-danger"></i>
+                                        <span
+                                            class="badge position-absolute top-0 start-100 translate-middle bg-danger p-1">
+                                            {{ count($cart) }}
+                                        </span>
+                                    </button>
+                                </a>
                             </div>
 
-                            <div>
-                                <select name="sorting" id="sorting" class="form-select mb-3" aria-label="Sorting">
-                                    <option value="" disabled selected>Sorting</option>
-                                    <option value="asc" class="mb-3">Ascending</option>
-                                    <option value="desc" class="mb-3">Descending</option>
-                                </select>
+                            <div class=" d-flex">
+                                <div class="mt-1 me-3">
+                                    <button class="btn btn-sm btn-light" title="List-View">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <select name="sorting" id="sorting" class="form-select mb-3" aria-label="Sorting">
+                                        <option value="" disabled selected>Sorting</option>
+                                        <option value="asc" class="mb-3">Ascending</option>
+                                        <option value="desc" class="mb-3">Descending</option>
+                                    </select>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -73,12 +90,12 @@
                                             <img class="img-fluid w-100" style="height: 230px"
                                                 src="{{ asset('storage/' . $product->image) }}" alt="product image">
                                             <div class="product-action">
-                                                <a href="#" class="btn btn-outline-dark btn-square"
+                                                {{-- <a href="#" class="btn btn-outline-dark btn-square"
                                                     title="Add to Cart">
                                                     <i class="fa fa-shopping-cart"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-outline-dark btn-square"
-                                                    title="See Details">
+                                                </a> --}}
+                                                <a href="{{ route('user#productdetails', $product->id) }}"
+                                                    class="btn btn-outline-dark btn-square" title="See Details">
                                                     <i class="fa-solid fa-circle-info"></i>
                                                 </a>
                                             </div>
@@ -122,14 +139,6 @@
 @section('ajax_Script_Section')
     <script>
         $(document).ready(function() {
-            // $.ajax({
-            //     type: 'get',
-            //     url: 'http://127.0.0.1:8000/ajax/pizza_list',
-            //     datatype: 'json',
-            //     success: function(response) {
-            //         console.log(response)
-            //     }
-            // })
 
             $('#sorting').change(function() {
                 $sorting = $('#sorting').val();
@@ -157,7 +166,7 @@
                                             <a href="#" class="btn btn-outline-dark btn-square" title="Add to Cart">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
-                                            <a href="#" class="btn btn-outline-dark btn-square" title="See Details">
+                                            <a href="{{ route('user#productdetails', $product->id) }}" class="btn btn-outline-dark btn-square" title="See Details">
                                                 <i class="fa-solid fa-circle-info"></i>
                                             </a>
                                         </div>
@@ -209,7 +218,7 @@
                                             <a href="#" class="btn btn-outline-dark btn-square" title="Add to Cart">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
-                                            <a href="#" class="btn btn-outline-dark btn-square" title="See Details">
+                                            <a href="{{ route('user#productdetails', $product->id) }}" class="btn btn-outline-dark btn-square" title="See Details">
                                                 <i class="fa-solid fa-circle-info"></i>
                                             </a>
                                         </div>
@@ -240,6 +249,7 @@
                     });
 
                 }
+
             })
 
 

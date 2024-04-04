@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use Carbon\Carbon;
+use App\Models\Cart;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
@@ -20,7 +21,8 @@ class UserController extends Controller
     {
         $products = Product::get();
         $categories = Category::get();
-        return view('user.main.home', compact('products', 'categories'));
+        $cart = Cart::where('user_id', Auth::user()->id)->get();
+        return view('user.main.home', compact('products', 'categories', 'cart'));
     }
 
     // view user home with category filter
@@ -30,6 +32,29 @@ class UserController extends Controller
         $products = Product::where('category_id', $id)->get();
         $categories = Category::get();
         return view('user.main.home', compact('products', 'categories'));
+    }
+
+    // view user product details
+    public function productDetails($id)
+    {
+        $details = Product::find($id);
+        $productdetails = Product::get();
+        return view('user.main.details', compact('details', 'productdetails'));
+    }
+
+    // view user myCart
+    public function myCart()
+    {
+        $cartlists = Cart::select('carts.*', 'products.name as product_name', 'products.image as product_image', 'products.price as product_price')
+            ->leftJoin('products', 'products.id', 'carts.product_id')
+            ->where('carts.user_id', Auth::user()->id)
+            ->get();
+
+        $subtotal = 0;
+        foreach ($cartlists as $cartitem) {
+            $subtotal += $cartitem->product_price * $cartitem->qty;
+        }
+        return view('user.main.cart', compact('cartlists', 'subtotal'));
     }
 
     // view account

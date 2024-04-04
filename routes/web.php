@@ -75,6 +75,8 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('home', [UserController::class, 'userhome'])->name('user#home');
             Route::get('filter_category/{id}', [UserController::class, 'filterCategory'])->name('user#filtercategory');
+            Route::get('product_details/{id}', [UserController::class, 'productDetails'])->name('user#productdetails');
+            Route::get('mycart', [UserController::class, 'myCart'])->name('user#mycart');
         });
 
         // change password
@@ -93,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
         // ajax
         Route::prefix('ajax')->group(function () {
             Route::get('pizza_list', [AjaxController::class, 'pizzaList'])->name('ajax#pizzalist');
+            Route::get('add_to_cart', [AjaxController::class, 'addToCart'])->name('ajax#addtocart');
         });
 
 

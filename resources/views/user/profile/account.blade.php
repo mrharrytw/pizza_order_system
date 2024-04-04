@@ -91,7 +91,7 @@
                                         Address
                                     </button>
                                     <button class="btn btn-sm btn-light text-start" style="width: 400px">
-                                        {{ Auth::user()->address }}
+                                        {{ ucfirst(Auth::user()->address) }}
                                     </button>
                                 </div>
                             </li>
