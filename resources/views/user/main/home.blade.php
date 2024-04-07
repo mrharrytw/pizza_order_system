@@ -57,6 +57,7 @@
                                         <i class="fa-solid fa-cart-shopping text-danger"></i>
                                         <span
                                             class="badge position-absolute top-0 start-100 translate-middle bg-danger p-1">
+                                            {{-- {{ count($cart ?? []) }} --}}
                                             {{ count($cart) }}
                                         </span>
                                     </button>
@@ -106,7 +107,7 @@
                                             </a>
                                             <div class="d-flex align-items-center justify-content-center mt-2">
                                                 <h5>{{ $product->price }} kyats</h5>
-                                                <h6 class="text-muted ml-2"><del>25000</del></h6>
+                                                {{-- <h6 class="text-muted ml-2"><del>25000</del></h6> --}}
                                             </div>
                                             <div class="d-flex align-items-center justify-content-center mb-1">
                                                 <small class="fa fa-star text-primary mr-1"></small>

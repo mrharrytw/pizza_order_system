@@ -54,7 +54,8 @@
                     <div class="login-content shadow">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="{{ asset('admin/images/icon/logo1.png') }}" alt="CoolAdmin">
+                                <img style="width: 250px" src="{{ asset('admin/images/icon/logo2.png') }}"
+                                    alt="CoolAdmin">
                             </a>
                         </div>
 

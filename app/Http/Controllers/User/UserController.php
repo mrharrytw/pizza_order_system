@@ -31,7 +31,8 @@ class UserController extends Controller
         // dd($id);
         $products = Product::where('category_id', $id)->get();
         $categories = Category::get();
-        return view('user.main.home', compact('products', 'categories'));
+        $cart = Cart::where('user_id', Auth::user()->id)->get();
+        return view('user.main.home', compact('products', 'categories', 'cart'));
     }
 
     // view user product details

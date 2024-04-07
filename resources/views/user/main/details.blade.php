@@ -111,7 +111,7 @@
                                 <a class="h6 text-decoration-none text-truncate" href="">{{ $d->name }}</a>
                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                     <h5>{{ $d->price }} Kyats</h5>
-                                    <h6 class="text-muted ml-2"><del>30000 Kyats</del></h6>
+                                    {{-- <h6 class="text-muted ml-2"><del>30000 Kyats</del></h6> --}}
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center mb-1">
                                     <small class="fa fa-star text-primary mr-1"></small>

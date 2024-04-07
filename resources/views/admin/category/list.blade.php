@@ -98,7 +98,7 @@
                                                             </button>
                                                         </a>
                                                         <a href="{{ route('category#delete', $category->id) }}">
-                                                            <button class="item mx-2" data-toggle="tooltip"
+                                                            <button class="item mx-2 delete-btn" data-toggle="tooltip"
                                                                 data-placement="top" title="Delete">
                                                                 <i class="zmdi zmdi-delete text-danger"></i>
                                                             </button>
@@ -120,6 +120,8 @@
                                 </div>
                             @endif
 
+
+
                         </div>
                         <!-- END DATA TABLE -->
                     </div>
@@ -127,4 +129,15 @@
             </div>
         </div>
         <!-- END MAIN CONTENT-->
+    @endsection
+    @section('jQueryScript')
+        <script>
+            $(document).ready(function() {
+
+
+
+
+            })
+        </script>
+
     @endsection

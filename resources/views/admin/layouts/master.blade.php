@@ -46,13 +46,14 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
+        <aside class="menu-sidebar d-none d-lg-block overflow-hidden">
+            <div class="logo bg-light">
                 <a href="#">
-                    <img src="{{ asset('admin/images/icon/logo2.png') }}" alt="Pizza logo" />
+                    <img style="margin-top: 40px" src="{{ asset('admin/images/icon/logo2.png') }}" alt="Pizza logo" />
                 </a>
             </div>
-            <div class="menu-sidebar__content js-scrollbar1">
+
+            <div class="menu-sidebar__content js-scrollbar1" style="margin-top: 20px">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li>
@@ -230,7 +231,8 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="{{ asset('admin/vendor/jquery-3.2.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/vendor/jquery-3.2.1.min.js') }}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap 5.3.3 CDN JS Link-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Bootstrap JS-->
@@ -250,7 +252,7 @@
 
     <!-- Main JS-->
     <script src="{{ asset('admin/js/main.js') }}"></script>
-
+    @yield('jQueryScript')
 </body>
 
 </html>

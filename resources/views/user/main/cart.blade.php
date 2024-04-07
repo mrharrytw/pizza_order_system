@@ -4,8 +4,9 @@
     <!-- Cart Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-light table-borderless table-hover text-center mb-0 datatable" id="datatable">
+            <div class="col-lg-8 table-responsive mb-">
+                {{-- Data table start --}}
+                <table class="table table-light table-borderless table-hover text-center datatable" id="datatable">
                     <thead class="thead-danger">
                         <tr class="shadow">
                             <th>Products</th>
@@ -16,11 +17,14 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
+                        {{-- foreach looping start --}}
                         @foreach ($cartlists as $cartitem)
                             <tr class="shadow">
                                 <td class="text-start ps-lg-5">
                                     <img src="{{ asset('storage/' . $cartitem->product_image) }}" style="width: 50px;">
                                     <span class="ms-1">{{ $cartitem->product_name }}</span>
+                                    <input type="hidden" class="userID" value="{{ $cartitem->user_id }}">
+                                    <input type="hidden" class="productID" value="{{ $cartitem->product_id }}">
                                 </td>
                                 <td class="align-middle">{{ number_format($cartitem->product_price) }} Ks</td>
                                 <td class="align-middle">
@@ -52,11 +56,19 @@
                                 <input type="hidden" class="product-price" value="{{ $cartitem->product_price }}">
                             </tr>
                         @endforeach
-
-
+                        {{-- foreach looping End --}}
                     </tbody>
                 </table>
+                {{-- Data table end --}}
+
+                <div class="text-center">
+                    Want to add more to cart... <a href="{{ route('user#home') }}"
+                        class="text-danger text-decoration-none">Click Here</a>.
+                </div>
+
             </div>
+
+            {{-- Cart Summary Start --}}
             <div class="col-lg-4">
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">
                         Cart Summary</span></h5>
@@ -76,15 +88,46 @@
                             <h5>Total</h5>
                             <h5 id="finaltotal">{{ number_format($subtotal + 3000) }} Ks</h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="checkout-btn">
                             Proceed To Checkout
                             <i class="fa-solid fa-square-arrow-up-right ms-2"></i>
                         </button>
                     </div>
                 </div>
             </div>
+            {{-- Cart Summary End --}}
         </div>
     </div>
+
+    {{-- Delete Cart Item confirmation Modal --}}
+    <div class="modal fade mt-5" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">
+                        Remove Item
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <i class="fa-solid fa-triangle-exclamation text-danger mx-2"></i>
+                    Are you sure you want to remove this item from your cart?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm px-3 btn-secondary" data-bs-dismiss="modal">
+                        No
+                    </button>
+                    <button type="button" class="btn btn-sm px-3 btn-danger" id="confirmYes">
+                        Yes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Delete Cart Item confirmation Modal End --}}
+
     <!-- Cart End -->
 @endsection
 
@@ -120,9 +163,16 @@
 
             // for row delete
             $(document).on('click', '.btn-remove', function() {
-                $(this).closest('tr').remove();
 
-                summaryCalculation();
+                $('#confirmationModal').modal('show');
+
+                var $buttonToRemove = $(this);
+
+                $('#confirmYes').click(function() {
+                    $buttonToRemove.closest('tr').remove();
+                    summaryCalculation();
+                    $('#confirmationModal').modal('hide');
+                });
 
             });
 
@@ -142,6 +192,40 @@
                 $finaltotaltoDisplay = $finaltotal.toLocaleString();
                 $('#finaltotal').text(`${$finaltotaltoDisplay} Ks`);
             }
+
+
+            // to checkout with ajax
+            $('#checkout-btn').click(function() {
+
+                $randomNum = Math.floor(Math.random() * 100000001)
+                $orderlist = []
+                $('#datatable tbody tr').each(function(index, row) {
+                    $orderlist.push({
+                        'userID': $(row).find('.userID').val(),
+                        'productID': $(row).find('.productID').val(),
+                        'qty': $(row).find('.qty').val(),
+                        'total': $(row).find('#total').text().replace(',', '').replace('Ks',
+                            '').trim(),
+                        'orderCode': 'POS' + $randomNum
+                    })
+                })
+                console.log($orderlist);
+
+                $.ajax({
+                    type: 'get',
+                    url: 'http://127.0.0.1:8000/ajax/checkout',
+                    data: Object.assign({}, $orderlist),
+                    datatype: 'json',
+                    success: function(response) {
+                        if (response.status == 'true') {
+                            window.location.href = 'http://127.0.0.1:8000/user/home';
+                        }
+                    }
+                });
+
+
+            });
+
 
         });
     </script>
