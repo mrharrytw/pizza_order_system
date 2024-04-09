@@ -71,6 +71,22 @@ class AjaxController extends Controller
 
     }
 
+    // Clear Cart
+    public function clearCart()
+    {
+        Cart::where('user_id', Auth::user()->id)->delete();
+    }
+
+    // delete item from cart
+    public function deleteItem(Request $request)
+    {
+        // logger($request->all());
+        Cart::where('user_id', Auth::user()->id)
+            ->where('product_id', $request->productId)
+            ->where('id', $request->orderId)
+            ->delete();
+    }
+
     // private function
     private function getOrderData($request)
     {

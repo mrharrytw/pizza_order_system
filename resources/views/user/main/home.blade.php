@@ -57,8 +57,17 @@
                                         <i class="fa-solid fa-cart-shopping text-danger"></i>
                                         <span
                                             class="badge position-absolute top-0 start-100 translate-middle bg-danger p-1">
-                                            {{-- {{ count($cart ?? []) }} --}}
                                             {{ count($cart) }}
+                                        </span>
+                                    </button>
+                                </a>
+                                <a href="{{ route('user#history') }}" class="ms-2">
+                                    <button type="button" class="btn btn-light position-relative text-danger">
+                                        <i class="fa-solid fa-clock-rotate-left me-1"></i>
+                                        <span class="fw-bold">History</span>
+                                        <span
+                                            class="badge position-absolute top-0 start-100 translate-middle bg-danger p-1">
+                                            {{ count($history) }}
                                         </span>
                                     </button>
                                 </a>

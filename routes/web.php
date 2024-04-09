@@ -77,6 +77,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('filter_category/{id}', [UserController::class, 'filterCategory'])->name('user#filtercategory');
             Route::get('product_details/{id}', [UserController::class, 'productDetails'])->name('user#productdetails');
             Route::get('mycart', [UserController::class, 'myCart'])->name('user#mycart');
+            Route::get('history', [UserController::class, 'history'])->name('user#history');
         });
 
         // change password
@@ -97,6 +98,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('pizza_list', [AjaxController::class, 'pizzaList'])->name('ajax#pizzalist');
             Route::get('add_to_cart', [AjaxController::class, 'addToCart'])->name('ajax#addtocart');
             Route::get('checkout', [AjaxController::class, 'checkout'])->name('ajax#checkout');
+            Route::get('clear_cart', [AjaxController::class, 'clearCart'])->name('ajax#clearcart');
+            Route::get('delete_item', [AjaxController::class, 'deleteItem'])->name('ajax#deleteitem');
         });
 
 

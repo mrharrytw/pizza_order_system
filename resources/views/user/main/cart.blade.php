@@ -5,6 +5,7 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-">
+
                 {{-- Data table start --}}
                 <table class="table table-light table-borderless table-hover text-center datatable" id="datatable">
                     <thead class="thead-danger">
@@ -23,6 +24,7 @@
                                 <td class="text-start ps-lg-5">
                                     <img src="{{ asset('storage/' . $cartitem->product_image) }}" style="width: 50px;">
                                     <span class="ms-1">{{ $cartitem->product_name }}</span>
+                                    <input type="hidden" class="orderID" value="{{ $cartitem->id }}">
                                     <input type="hidden" class="userID" value="{{ $cartitem->user_id }}">
                                     <input type="hidden" class="productID" value="{{ $cartitem->product_id }}">
                                 </td>
@@ -49,7 +51,7 @@
                                     {{ number_format($cartitem->product_price * $cartitem->qty) }} Ks
                                 </td>
                                 <td class="align-middle">
-                                    <button class="btn btn-sm btn-danger btn-remove">
+                                    <button class="btn btn-sm btn-danger btn-remove" id="btn-remove">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </td>
@@ -92,6 +94,10 @@
                             Proceed To Checkout
                             <i class="fa-solid fa-square-arrow-up-right ms-2"></i>
                         </button>
+                        <button class="btn btn-block btn-danger font-weight-bold my-3 py-3" id="clearcart-btn">
+                            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                            Clear Cart
+                        </button>
                     </div>
                 </div>
             </div>
@@ -111,7 +117,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body my-3">
                     <i class="fa-solid fa-triangle-exclamation text-danger mx-2"></i>
                     Are you sure you want to remove this item from your cart?
                 </div>
@@ -127,6 +133,35 @@
         </div>
     </div>
     {{-- Delete Cart Item confirmation Modal End --}}
+
+    {{-- Clear Cart confirmation Modal --}}
+    <div class="modal fade mt-5" id="clearConfirmationModal" tabindex="-1" aria-labelledby="clearConfirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="clearConfirmationModalLabel">
+                        Clear Cart
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body my-3">
+                    <i class="fa-solid fa-triangle-exclamation text-danger mx-2"></i>
+                    Are you sure you want to clear all items from your cart?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm px-3 btn-secondary" data-bs-dismiss="modal">
+                        No
+                    </button>
+                    <button type="button" class="btn btn-sm px-3 btn-danger" id="clearYes">
+                        Yes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Clear Cart confirmation Modal End --}}
 
     <!-- Cart End -->
 @endsection
@@ -161,20 +196,39 @@
 
             });
 
-            // for row delete
-            $(document).on('click', '.btn-remove', function() {
+
+            // for row delete with confirm modal box and delete item form cart table in DB with ajax
+            $(document).on('click', '#btn-remove', function() {
 
                 $('#confirmationModal').modal('show');
 
-                var $buttonToRemove = $(this);
+                $itemToRemove = $(this).parents('tr');
 
                 $('#confirmYes').click(function() {
-                    $buttonToRemove.closest('tr').remove();
+
+                    var $productID = $itemToRemove.find('.productID').val();
+                    var $orderID = $itemToRemove.find('.orderID').val();
+
+                    console.log($productID, $orderID);
+
+                    $.ajax({
+                        type: 'get',
+                        url: 'http://127.0.0.1:8000/ajax/delete_item',
+                        data: {
+                            'productId': $productID,
+                            'orderId': $orderID
+                        },
+                        datatype: 'json',
+
+                    });
+
+                    $itemToRemove.remove();
                     summaryCalculation();
                     $('#confirmationModal').modal('hide');
                 });
 
             });
+
 
             // for summary calculation
             function summaryCalculation() {
@@ -209,7 +263,7 @@
                         'orderCode': 'POS' + $randomNum
                     })
                 })
-                console.log($orderlist);
+                // console.log($orderlist);
 
                 $.ajax({
                     type: 'get',
@@ -223,9 +277,27 @@
                     }
                 });
 
-
             });
 
+
+            // for clearing all cart items with confirm modal box and delete all datas form cart table in DB with ajax
+            $(document).on('click', '#clearcart-btn', function() {
+                $('#clearConfirmationModal').modal('show');
+
+                $('#clearYes').click(function() {
+                    $('#datatable tbody tr').remove();
+                    $('#subtotal').html('0 Ks');
+                    $('#finaltotal').html('0 Ks');
+                    $('#clearConfirmationModal').modal('hide');
+
+                    $.ajax({
+                        type: 'get',
+                        url: 'http://127.0.0.1:8000/ajax/clear_cart',
+                        datatype: 'json',
+                    })
+                });
+
+            });
 
         });
     </script>

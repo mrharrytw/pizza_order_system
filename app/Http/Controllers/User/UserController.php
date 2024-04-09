@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ class UserController extends Controller
         $products = Product::get();
         $categories = Category::get();
         $cart = Cart::where('user_id', Auth::user()->id)->get();
-        return view('user.main.home', compact('products', 'categories', 'cart'));
+        $history = Order::where('user_id', Auth::user()->id)->get();
+        return view('user.main.home', compact('products', 'categories', 'cart', 'history'));
     }
 
     // view user home with category filter
@@ -32,7 +34,8 @@ class UserController extends Controller
         $products = Product::where('category_id', $id)->get();
         $categories = Category::get();
         $cart = Cart::where('user_id', Auth::user()->id)->get();
-        return view('user.main.home', compact('products', 'categories', 'cart'));
+        $history = Order::where('user_id', Auth::user()->id)->get();
+        return view('user.main.home', compact('products', 'categories', 'cart', 'history'));
     }
 
     // view user product details
@@ -56,6 +59,14 @@ class UserController extends Controller
             $subtotal += $cartitem->product_price * $cartitem->qty;
         }
         return view('user.main.cart', compact('cartlists', 'subtotal'));
+    }
+
+    // view history page
+    public function history()
+    {
+        $datas = Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate('10');
+        // dd($datas->toArray());
+        return view('user.main.history', compact('datas'));
     }
 
     // view account
