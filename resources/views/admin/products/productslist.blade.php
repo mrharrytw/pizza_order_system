@@ -50,11 +50,11 @@
                     {{-- search key and search box --}}
                     <div class="row">
                         <div class="col-3">
-                            <span class="h5">Search Key :</span>
-                            <span class="text-danger">{{ request('searchkey') }}</span>
+                            <span class="lead">Search Key :</span>
+                            <span class="text-danger border-bottom border-danger">{{ request('searchkey') }}</span>
                         </div>
                         <div class="col-6">
-                            <span class="h5 ms-5">Total Products - {{ $products->total() }}</span>
+                            <span class="lead ms-5">Total Products - {{ $products->total() }}</span>
                         </div>
                         <div class="mb-2 col-3 ">
                             <form action="{{ route('products#productslist') }}" method="get">

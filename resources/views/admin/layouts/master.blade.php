@@ -64,6 +64,10 @@
                             <a href="{{ route('products#productslist') }}" class="text-danger">
                                 <i class="fa-solid fa-pizza-slice"></i>Products</a>
                         </li>
+                        <li>
+                            <a href="{{ route('order#orderlist') }}" class="text-danger">
+                                <i class="fa-solid fa-list-check"></i></i>Order</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -80,7 +84,7 @@
                             <div class="mt-1">
                                 <div class="h1 text-light"
                                     style="text-shadow: 0px 0px 3px rgba(0,0,0,0.8); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
-                                    Admin Dashboard Panel
+                                    Admin Dashboard
                                 </div>
                             </div>
                             <div class="header-button">
@@ -252,7 +256,9 @@
 
     <!-- Main JS-->
     <script src="{{ asset('admin/js/main.js') }}"></script>
+
     @yield('jQueryScript')
+
 </body>
 
 </html>

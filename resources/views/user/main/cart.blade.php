@@ -209,7 +209,7 @@
                     var $productID = $itemToRemove.find('.productID').val();
                     var $orderID = $itemToRemove.find('.orderID').val();
 
-                    console.log($productID, $orderID);
+                    // console.log($productID, $orderID);
 
                     $.ajax({
                         type: 'get',

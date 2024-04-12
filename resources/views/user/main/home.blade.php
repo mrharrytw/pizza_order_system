@@ -74,11 +74,11 @@
                             </div>
 
                             <div class=" d-flex">
-                                <div class="mt-1 me-3">
+                                {{-- <div class="mt-1 me-3">
                                     <button class="btn btn-sm btn-light" title="List-View">
                                         <i class="fa fa-bars"></i>
                                     </button>
-                                </div>
+                                </div> --}}
                                 <div>
                                     <select name="sorting" id="sorting" class="form-select mb-3" aria-label="Sorting">
                                         <option value="" disabled selected>Sorting</option>

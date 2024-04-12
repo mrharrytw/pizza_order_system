@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\AjaxController;
 use App\Http\Controllers\User\UserController;
@@ -63,7 +64,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('detail,{id}', [ProductController::class, 'productDetail'])->name('product#detail');
             Route::get('editProduct,{id}', [ProductController::class, 'editProduct'])->name('products#editProduct');
             Route::post('updateProduct', [ProductController::class, 'updateProduct'])->name('product#update');
+        });
 
+        Route::prefix('order')->group(function () {
+            Route::get('order_list', [OrderController::class, 'orderList'])->name('order#orderlist');
+            Route::get('search_by_status', [OrderController::class, 'searchByStatus'])->name('order#searchbystatus');
+            Route::get('ajax_statuschange', [OrderController::class, 'ajaxStatusChange'])->name('order#ajaxstatuschange');
         });
     });
 

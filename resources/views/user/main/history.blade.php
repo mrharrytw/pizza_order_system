@@ -3,13 +3,20 @@
 @section('content')
     <!-- Cart Start -->
     <div class="container-fluid" style="min-height: 400px;">
-        <div class="text-center">
-            <span class="border-bottom border-danger text-danger lead  mb-3 d-inline-block">
-                Your Cart History
-            </span>
+        <div class="row px-xl-5">
+            <div class="col-lg-2 offset-lg-2">
+                <button class="btn btn-danger btn-sm rounded-0 text-white pe-md-4" onclick="history.back()"> <i
+                        class="fa-solid fa-chevron-left me-2"></i> Back
+                </button>
+            </div>
+            <div class="col-lg-4 text-center">
+                <span class="border-bottom border-danger text-danger lead  mb-3 d-inline-block">
+                    Your Cart History
+                </span>
+            </div>
         </div>
         <div class="row px-xl-5">
-            <div class="col-lg-8 offset-2 table-responsive mb-">
+            <div class="col-lg-8 offset-lg-2 table-responsive mb-">
 
                 {{-- Data table start --}}
                 <table class="table table-light table-borderless table-hover text-center datatable" id="datatable">
