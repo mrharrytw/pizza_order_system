@@ -104,7 +104,7 @@
                                         <div class="form-group mb-3">
                                             <label for="cc-payment" class="control-label mb-1">Description</label>
                                             <textarea id="cc-pament" name="productdescription"
-                                                class="form-control @error('productdescription') is-invalid  @enderror" cols="30" rows="3"
+                                                class="form-control @error('productdescription') is-invalid  @enderror" cols="30" rows="5"
                                                 placeholder="Description...">{{ old('productdescription', $product->description) }}
                                             </textarea>
                                             @error('productdescription')

@@ -66,10 +66,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('updateProduct', [ProductController::class, 'updateProduct'])->name('product#update');
         });
 
+        // admin -> order_list
         Route::prefix('order')->group(function () {
             Route::get('order_list', [OrderController::class, 'orderList'])->name('order#orderlist');
             Route::get('search_by_status', [OrderController::class, 'searchByStatus'])->name('order#searchbystatus');
             Route::get('ajax_statuschange', [OrderController::class, 'ajaxStatusChange'])->name('order#ajaxstatuschange');
+            Route::get('order_detail,{orderCode}', [OrderController::class, 'orderDetail'])->name('order#orderdetail');
         });
     });
 

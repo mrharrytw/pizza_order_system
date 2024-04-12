@@ -82,7 +82,10 @@
 
                                             <td>{{ $order->created_at->format('d M Y') }}</td>
 
-                                            <td>{{ $order->order_code }}</td>
+                                            <td>
+                                                <a
+                                                    href="{{ route('order#orderdetail', $order->order_code) }}">{{ $order->order_code }}</a>
+                                            </td>
 
                                             <td class="amount">{{ $order->total_price }} Kyats</td>
 

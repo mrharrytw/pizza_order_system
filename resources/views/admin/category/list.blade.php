@@ -83,7 +83,7 @@
                                     <tbody>
                                         @foreach ($categories as $category)
                                             <tr class="tr-shadow">
-                                                <td>{{ $category->id }}</td>
+                                                <td class="align-content-center">{{ $category->id }}</td>
 
                                                 <td>{{ $category->name }}</td>
 
