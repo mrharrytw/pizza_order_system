@@ -70,32 +70,32 @@
                             <tbody>
                                 @foreach ($admins as $admin)
                                     <tr class="tr-shadow">
-                                        <td class="col-2">
+                                        <td class="col-1">
                                             @if ($admin->image != null)
-                                                <img style="max-width:200px" src="{{ asset('storage/' . $admin->image) }}"
+                                                <img style="max-width:100px" src="{{ asset('storage/' . $admin->image) }}"
                                                     class="img-thumbnail shadow-sm" />
                                             @else
                                                 @if ($admin->gender == 'male')
-                                                    <img style="max-width:200px"
+                                                    <img style="max-width:100px"
                                                         src="{{ asset('image/male_default_user.png') }}"
                                                         class="img-thumbnail shadow-sm" />
                                                 @else
-                                                    <img style="max-width:200px"
+                                                    <img style="max-width:100px"
                                                         src="{{ asset('image/female_default_user.png') }}"
                                                         class="img-thumbnail shadow-sm" />
                                                 @endif
                                             @endif
                                         </td>
 
-                                        <td class="col-2">{{ $admin->name }}</td>
+                                        <td class="col-1">{{ $admin->name }}</td>
 
                                         <td class="col-1">{{ $admin->gender }}</td>
 
-                                        <td class="col-2">{{ $admin->email }}</td>
+                                        <td class="col-1">{{ $admin->email }}</td>
 
                                         <td class="col-1">{{ $admin->phone }}</td>
 
-                                        <td class="col-3">{{ $admin->address }}</td>
+                                        <td class="col-4">{{ $admin->address }}</td>
 
                                         <td class="col-3">
                                             <div class="table-data-feature">

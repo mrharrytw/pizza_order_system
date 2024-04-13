@@ -43,6 +43,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('listdelete/{id}', [AdminController::class, 'listdelete'])->name('admin#listdelete');
             Route::get('changerole/{id}', [AdminController::class, 'changerole'])->name('admin#changerole');
             Route::post('roleupdate/{id}', [AdminController::class, 'roleupdate'])->name('admin#roleUpdate');
+
+            // user list
+            Route::get('userlist', [AdminController::class, 'userlist'])->name('admin#userlist');
+            Route::get('userdelete/{id}', [AdminController::class, 'userDelete'])->name('admin#userdelete');
+            Route::get('ajax_userrolechange', [AdminController::class, 'userRoleChange'])->name('admin#ajaxuserrolechange');
         });
 
         // admin -> category

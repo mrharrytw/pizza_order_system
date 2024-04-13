@@ -112,10 +112,39 @@ class AdminController extends Controller
         return redirect()->route('admin#details')->with(['accountInfoChanged' => 'You have updated Admin account Infomation']);
     }
 
+    // direct view user list page
+    public function userlist()
+    {
+        $users = User::when(request('searchkey'), function ($queryforsearch) {
+            $queryforsearch->orWhere('name', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('email', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('gender', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('phone', 'like', '%' . request('searchkey') . '%')
+                ->orWhere('address', 'like', '%' . request('searchkey') . '%');
+        })
+            ->where('role', 'user')
+            ->orderBy('name')
+            ->paginate(3);
+        return view('admin.account.userlist', compact('users'));
+    }
+
+    // delete user
+    public function userDelete($id)
+    {
+        User::where('id', $id)->delete();
+        return back()->with(['deleteList' => 'You have deleted an user account!']);
+    }
+
+    // change user role with ajax
+    public function userRoleChange(Request $request)
+    {
+        // logger($request->all());
+        User::where('id', $request->userId)->update(['role' => $request->currentRole]);
+    }
 
 
+    // ------------------------- || the following are private functions ||----------------------------------------
 
-    // the following are private functions
     private function getUserData($request)
     {
         return [
@@ -155,7 +184,4 @@ class AdminController extends Controller
             ]
         )->validate();
     }
-
-
-
 }

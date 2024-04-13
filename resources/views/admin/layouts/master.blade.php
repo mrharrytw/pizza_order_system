@@ -195,6 +195,11 @@
                                                         <i class="zmdi zmdi-accounts"></i>Admin List</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
+                                                    <a href="{{ route('admin#userlist') }}"
+                                                        class=" text-decoration-none text-danger">
+                                                        <i class="fa-solid fa-users"></i>User List</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
                                                     <a href="{{ route('admin#changePasswordPage') }}"
                                                         class=" text-decoration-none text-danger">
                                                         <i class="zmdi zmdi-key"></i>Change Password</a>
