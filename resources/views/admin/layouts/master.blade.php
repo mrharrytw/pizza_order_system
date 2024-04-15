@@ -68,6 +68,10 @@
                             <a href="{{ route('order#orderlist') }}" class="text-danger">
                                 <i class="fa-solid fa-list-check"></i></i>Order</a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin#contactinbox') }}" class="text-danger">
+                                <i class="fa-solid fa-envelope"></i></i></i>Inbox</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -88,47 +92,30 @@
                                 </div>
                             </div>
                             <div class="header-button">
-                                {{-- <div class="noti-wrap">
+
+                                {{-- Message Notification Start --}}
+                                <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
                                         <i class="zmdi zmdi-notifications text-light"></i>
-                                        <span class="quantity">3</span>
+                                        <span class="quantity"></span>
                                         <div class="notifi-dropdown js-dropdown">
                                             <div class="notifi__title">
-                                                <p class="text-danger">You have 3 Notifications</p>
+                                                <p class="text-danger text-center"></p>
                                             </div>
+
                                             <div class="notifi__item">
-                                                <div class="bg-c1 img-cir img-40">
-                                                    <i class="zmdi zmdi-email-open"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a email notification</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
+
                                             </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c2 img-cir img-40">
-                                                    <i class="zmdi zmdi-account-box"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>Your account has been blocked</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c3 img-cir img-40">
-                                                    <i class="zmdi zmdi-file-text"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a new file</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
+
                                             <div class="notifi__footer">
-                                                <a href="#" class="text-danger">All notifications</a>
+                                                <a href="{{ route('admin#contactinbox') }}" class="text-danger">
+                                                    See All Messages</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
+                                {{-- Message Notification end --}}
+
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
@@ -263,6 +250,60 @@
     <script src="{{ asset('admin/js/main.js') }}"></script>
 
     @yield('jQueryScript')
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "get",
+                url: "/admin/contact/ajaxshownoti",
+                datatype: 'json',
+                success: function(response) {
+                    let unreadMessageCount = response.unreadMessageCount;
+                    let unreadMessages = response.unreadMessages;
+
+                    $('.quantity').text(unreadMessageCount);
+                    $('.notifi__title p').text(`You have ${unreadMessageCount} New Messages`);
+
+                    let notifi_item = $('.notifi__item');
+
+                    unreadMessages.forEach(message => {
+
+                        let dbdate = new Date(message.created_at);
+                        let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                            "Aug", "Sep", "Oct", "Nov", "Dec"
+                        ];
+
+                        let getday = dbdate.getDate();
+                        let getmonth = dbdate.getMonth();
+                        let getyear = dbdate.getFullYear();
+                        let time = dbdate.toLocaleTimeString();
+                        let jsdate = getday + ' ' + monthNames[getmonth] + ' ' + getyear +
+                            '  /  ' +
+                            time;
+
+
+                        let messageItem = `
+                            <div class="notifi__item">
+                                <div class="d-flex justify-content-around">
+                                    <div class="bg-c1 img-cir img-40">
+                                        <i class="zmdi zmdi-email"></i>
+                                    </div>
+                                    <div class="content">
+                                        <a href="#" class="text-decoration-none links">
+                                            <p>${message.subject}</p>
+                                            <span class="date">${jsdate}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        notifi_item.append(messageItem);
+                    });
+                }
+            });
+        });
+    </script>
+
 
 </body>
 

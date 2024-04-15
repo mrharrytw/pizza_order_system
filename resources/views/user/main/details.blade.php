@@ -29,7 +29,7 @@
                             <small class="fas fa-star-half-alt"></small>
                             <small class="far fa-star"></small>
                         </div>
-                        <small class="pt-1">{{ $details->view_count }} Views</small>
+                        <small class="pt-1">{{ $details->view_count + 1 }} Views</small>
                     </div>
                     <h3 class="font-weight-semi-bold mb-4">{{ $details->price }} Kyats</h3>
                     <p class="mb-4">{{ $details->description }}</p>
@@ -98,9 +98,9 @@
                                 <img class="img-fluid w-100" src="{{ asset('storage/' . $d->image) }}" style="height: 200px"
                                     alt="Product_Image">
                                 <div class="product-action">
-                                    <a href="#" class="btn btn-outline-dark btn-square" title="Add to Cart">
+                                    {{-- <a href="#" class="btn btn-outline-dark btn-square" title="Add to Cart">
                                         <i class="fa fa-shopping-cart"></i>
-                                    </a>
+                                    </a> --}}
                                     <a href="{{ route('user#productdetails', $d->id) }}"
                                         class="btn btn-outline-dark btn-square" title="See Details">
                                         <i class="fa-solid fa-circle-info"></i>
@@ -119,7 +119,7 @@
                                     <small class="fa fa-star text-primary mr-1"></small>
                                     <small class="fa fa-star text-primary mr-1"></small>
                                     <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>{{ $d->view_count }} Views</small>
+                                    <small>{{ $d->view_count + 1 }} Views</small>
                                 </div>
                             </div>
                         </div>
@@ -135,6 +135,19 @@
 @section('ajax_Script_Section')
     <script>
         $(document).ready(function() {
+
+            // view count increase
+            $.ajax({
+                type: 'get',
+                url: '/ajax/view_count',
+                data: {
+                    'productid': $('#productid').val()
+                },
+                datatype: 'json'
+            });
+
+
+            // add to cart
             $('#addcartbtn').click(function() {
 
                 $order_data = {
@@ -146,12 +159,12 @@
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://127.0.0.1:8000/ajax/add_to_cart',
+                    url: '/ajax/add_to_cart',
                     data: $order_data,
                     datatype: 'json',
                     success: function(response) {
                         if (response.status == 'success') {
-                            window.location.href = 'http://127.0.0.1:8000/user/mycart';
+                            window.location.href = '/user/mycart';
                         };
                     }
 

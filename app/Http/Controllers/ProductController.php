@@ -43,6 +43,7 @@ class ProductController extends Controller
         Product::create($data);
         return redirect()->route('products#productslist');
     }
+
     // detail product
     public function productDetail($id)
     {
@@ -86,6 +87,9 @@ class ProductController extends Controller
         Product::find($id)->delete();
         return back()->with(['deleteProduct' => 'You have deleted a product!']);
     }
+
+
+    // ------------------------- || the following are private functions ||----------------------------------------
 
     private function productValidationCheck($request, $action)
     {

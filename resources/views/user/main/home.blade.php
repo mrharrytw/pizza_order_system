@@ -73,6 +73,19 @@
                                 </a>
                             </div>
 
+                            {{-- start alert message for sending message  --}}
+                            <div>
+                                @if (session('sendmessage'))
+                                    <div class="alert alert-success text-small text-center alert-dismissible fade show"
+                                        role="alert">
+                                        <small>{{ session('sendmessage') }}</small>
+                                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
+                            </div>
+                            {{-- end alert message for sending message  --}}
+
                             <div class=" d-flex">
                                 {{-- <div class="mt-1 me-3">
                                     <button class="btn btn-sm btn-light" title="List-View">
@@ -86,8 +99,8 @@
                                         <option value="desc" class="mb-3">Descending</option>
                                     </select>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
 
@@ -210,7 +223,7 @@
                     // console.log('This is Decending');
                     $.ajax({
                         type: 'get',
-                        url: 'http://127.0.0.1:8000/ajax/pizza_list',
+                        url: '/ajax/pizza_list',
                         data: {
                             'status': 'desc'
                         },

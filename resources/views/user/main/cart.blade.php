@@ -213,7 +213,7 @@
 
                     $.ajax({
                         type: 'get',
-                        url: 'http://127.0.0.1:8000/ajax/delete_item',
+                        url: '/ajax/delete_item',
                         data: {
                             'productId': $productID,
                             'orderId': $orderID
@@ -267,12 +267,12 @@
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://127.0.0.1:8000/ajax/checkout',
+                    url: '/ajax/checkout',
                     data: Object.assign({}, $orderlist),
                     datatype: 'json',
                     success: function(response) {
                         if (response.status == 'true') {
-                            window.location.href = 'http://127.0.0.1:8000/user/home';
+                            window.location.href = '/user/home';
                         }
                     }
                 });
@@ -292,7 +292,7 @@
 
                     $.ajax({
                         type: 'get',
-                        url: 'http://127.0.0.1:8000/ajax/clear_cart',
+                        url: '/ajax/clear_cart',
                         datatype: 'json',
                     })
                 });

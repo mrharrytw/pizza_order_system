@@ -33,11 +33,11 @@
                     {{-- search key and search box --}}
                     <div class="row">
                         <div class="col-3">
-                            <span class="h5">Search Key :</span>
-                            <span class="text-danger">{{ request('searchkey') }}</span>
+                            <span class="lead">Search Key :</span>
+                            <span class="text-danger border-bottom border-danger">{{ request('searchkey') }}</span>
                         </div>
                         <div class="col-6">
-                            <span class="h5 ms-5">
+                            <span class="lead ms-5">
                                 There are <span class="text-danger">{{ $admins->total() }}</span> admins.
 
                             </span>

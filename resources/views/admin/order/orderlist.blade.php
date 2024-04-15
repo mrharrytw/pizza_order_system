@@ -38,7 +38,7 @@
                     {{-- search key and search box --}}
                     <div class="row">
                         <div class="col-lg-4">
-                            <span class="lead">Search Key :</span>
+                            <span class="">Search Key :</span>
                             <span class="text-danger border-bottom border-danger">{{ request('searchkey') }}</span>
                         </div>
                         <div class="col-lg-5">
@@ -199,7 +199,7 @@
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://127.0.0.1:8000/order/ajax_statuschange',
+                    url: '/order/ajax_statuschange',
                     data: {
                         'orderId': orderId,
                         'status': status

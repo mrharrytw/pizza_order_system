@@ -33,11 +33,11 @@
                     {{-- search key and search box --}}
                     <div class="row">
                         <div class="col-3">
-                            <span class="h5">Search Key :</span>
-                            <span class="text-danger">{{ request('searchkey') }}</span>
+                            <span class="lead">Search Key :</span>
+                            <span class="text-danger border-bottom border-danger">{{ request('searchkey') }}</span>
                         </div>
                         <div class="col-6">
-                            <span class="h5 ms-5">
+                            <span class="lead ms-5">
                                 There are <span class="text-danger">{{ $users->total() }}</span> members.
 
                             </span>
@@ -148,7 +148,7 @@
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://127.0.0.1:8000/admin/ajax_userrolechange',
+                    url: '/admin/ajax_userrolechange',
                     data: {
                         'userId': userId,
                         'currentRole': currentRole

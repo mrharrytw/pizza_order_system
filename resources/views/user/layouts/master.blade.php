@@ -72,9 +72,11 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 
                         <div class="navbar-nav mr-auto ml-1 py-0 h4">
-                            <a href="{{ route('user#home') }}" class="nav-item nav-link active">Home</a>
-                            {{-- <a href="{{ route('user#mycart') }}" class="nav-item nav-link">My Cart</a> --}}
-                            {{-- <a href="#" class="nav-item nav-link">Contact</a> --}}
+                            <a href="{{ route('user#home') }}"
+                                class="nav-item nav-link {{ request()->routeIs('user#home') ? 'active' : '' }}">Home</a>
+                            <a href="{{ route('user#contactadmin') }}"
+                                class="nav-item nav-link {{ request()->routeIs('user#contactadmin') ? 'active' : '' }}">Contact
+                                Admin</a>
                         </div>
 
                         <div class="dropdown">

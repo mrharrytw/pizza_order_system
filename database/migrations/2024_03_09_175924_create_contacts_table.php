@@ -12,9 +12,10 @@ return new class extends Migration {
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('message');
+            $table->integer('user_id');
+            $table->string('subject');
+            $table->text('message')->length(500);
+            $table->string('status')->default('unread');
             $table->timestamps();
         });
     }

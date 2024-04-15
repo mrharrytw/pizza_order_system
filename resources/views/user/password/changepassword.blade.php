@@ -69,6 +69,8 @@
             </div>
         </div>
     </div>
+
+    {{-- // show and hide password --}}
     <script>
         function myFunction() {
             var pw = document.querySelectorAll(".form-control");

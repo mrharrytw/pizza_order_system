@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\AjaxController;
@@ -78,6 +79,15 @@ Route::middleware(['auth'])->group(function () {
             Route::get('ajax_statuschange', [OrderController::class, 'ajaxStatusChange'])->name('order#ajaxstatuschange');
             Route::get('order_detail,{orderCode}', [OrderController::class, 'orderDetail'])->name('order#orderdetail');
         });
+
+        // admin -> contact and inbox
+        Route::prefix('admin/contact')->group(function () {
+            Route::get('inbox', [ContactController::class, 'contactInbox'])->name('admin#contactinbox');
+            Route::get('readmore/{id}', [ContactController::class, 'readmore'])->name('admin#readmore');
+            Route::get('ajaxChangeStatus', [ContactController::class, 'ajaxChangeStatus'])->name('admin#ajaxChangeStatus');
+            Route::get('ajaxshownoti', [ContactController::class, 'ajaxshownoti'])->name('admin#ajaxshownoti');
+        });
+
     });
 
 
@@ -113,9 +123,14 @@ Route::middleware(['auth'])->group(function () {
             Route::get('checkout', [AjaxController::class, 'checkout'])->name('ajax#checkout');
             Route::get('clear_cart', [AjaxController::class, 'clearCart'])->name('ajax#clearcart');
             Route::get('delete_item', [AjaxController::class, 'deleteItem'])->name('ajax#deleteitem');
+            Route::get('view_count', [AjaxController::class, 'viewCount'])->name('ajax#viewcount');
         });
 
-
+        // user contact
+        Route::prefix('user/contact')->group(function () {
+            Route::get('contact_admin', [ContactController::class, 'contactAdmin'])->name('user#contactadmin');
+            Route::post('send_message', [ContactController::class, 'sendMessage'])->name('user#sendmessage');
+        });
 
     });
 

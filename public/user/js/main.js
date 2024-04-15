@@ -37,7 +37,8 @@
     $('.vendor-carousel').owlCarousel({
         loop: true,
         margin: 29,
-        nav: false,
+        nav: true,
+        navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
         autoplay: true,
         smartSpeed: 1000,
         responsive: {
@@ -64,7 +65,8 @@
     $('.related-carousel').owlCarousel({
         loop: true,
         margin: 29,
-        nav: false,
+        nav: true,
+        navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
         autoplay: true,
         smartSpeed: 1000,
         responsive: {

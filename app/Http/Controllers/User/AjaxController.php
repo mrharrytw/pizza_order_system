@@ -87,6 +87,16 @@ class AjaxController extends Controller
             ->delete();
     }
 
+    // view count
+    public function viewCount(Request $request)
+    {
+
+        $db_viewcount = Product::where('id', $request->productid)->first();
+        $increase_viewcount = $db_viewcount->view_count + 1;
+
+        Product::where('id', $request->productid)->update(['view_count' => $increase_viewcount]);
+    }
+
     // private function
     private function getOrderData($request)
     {

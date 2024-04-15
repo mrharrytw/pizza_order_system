@@ -130,7 +130,8 @@ class UserController extends Controller
     }
 
 
-    // the following are private functions
+
+    //--------------------- the following are private functions -----------------------------
     private function getUserData($request)
     {
         return [
